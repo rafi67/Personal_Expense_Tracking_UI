@@ -4,17 +4,26 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { LayoutComponent } from './component/layout/layout.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { IncomeComponent } from './component/income/income.component';
+import { ExpenseComponent } from './component/expense/expense.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    LayoutComponent,
+    NavbarComponent,
+    IncomeComponent,
+    ExpenseComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideClientHydration(), provideHttpClient(withFetch())

@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div>
+    <div>
+        <h1 class="header">Incomes</h1>
+    </div>
+    <div class="totalIncome">
+        <p class="Padding">Total Income:${{totalIncome}}</p>
+    </div>
+    <div class="container">
+        <div class="Form">
+            <form [formGroup]="incomeForm" enctype="multipart/form-data" (ngSubmit)="addIncome()">
+                <input type="text" formControlName="salaryTitle" placeholder="Salary Title"><br>
+                <input type="text" formControlName="salaryAmount" placeholder="Salary Amount"><br>
+                <input type="text" formControlName="date" onfocus="(this.type='date')" placeholder="Enter A Date"><br>
+                <select formControlName="categoryID">
+                    <option value="" selected>Select your Option</option>
+                    <option value="{{item.categoryID}}" *ngFor="let item of categoryList">{{item.categoryName}}</option>
+                </select><br>
+                <textarea type="text" formControlName="reference" placeholder="Add a Reference"></textarea><br>
+                <button type="submit"><i class="fa fa-plus"></i>Add</button>
+            </form>
+        </div>
+        <div class="incomeContainer OverFlow" id="style-3">
+            <div class="Income" *ngFor="let dataList of incomeList">
+                <div class="circle"></div>
+                <div class="SalaryTitle">
+                    <p style="color: white; width:200px">{{dataList.salaryTitle}}</p>
+                </div>
+                <div class="amount">
+                    <i class="fa fa-dollar" style="color: white;"></i>
+                    <p class="txtAmount">{{dataList.salaryAmount}}</p>
+                </div>
+                <div class="dateIcon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <div class="txtDate">
+                    <p style="width: 100px;">{{dataList.date}}</p>
+                </div>
+                <div class="commentIcon">
+                    <i class="fa fa-comment"></i>
+                </div>
+                <div class="txtReference">
+                    <p style="width: 254px;">{{dataList.reference}}</p>
+                </div>
+                <div class="btnDeleteDiv">
+                    <button class="deleteBtn" (click)="deleteIncome(dataList.incomeId)">
+                        <i class="fa fa-trash" style="color:black;font-size:24px;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
