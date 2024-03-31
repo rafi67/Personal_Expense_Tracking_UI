@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class IncomeComponent implements OnInit {
 
+  selectedOption: string = 'option1';
   incomeList: Incomes [] = [];
   totalIncome: number = 0;
   incomeForm!: FormGroup;
@@ -78,6 +79,7 @@ export class IncomeComponent implements OnInit {
           }
         );
         this.incomeForm.reset();
+        this.selectedOption = 'option1';
       },
       error: () => {
         alert('Failed to add Data');

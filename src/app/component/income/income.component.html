@@ -12,8 +12,8 @@
                 <input type="text" formControlName="salaryTitle" placeholder="Salary Title"><br>
                 <input type="text" formControlName="salaryAmount" placeholder="Salary Amount"><br>
                 <input type="text" formControlName="date" onfocus="(this.type='date')" placeholder="Enter A Date"><br>
-                <select formControlName="categoryID">
-                    <option value="" selected>Select your Option</option>
+                <select formControlName="categoryID" [(ngModel)]="selectedOption">
+                    <option value="option1" selected>Select your Option</option>
                     <option value="{{item.categoryID}}" *ngFor="let item of categoryList">{{item.categoryName}}</option>
                 </select><br>
                 <textarea type="text" formControlName="reference" placeholder="Add a Reference"></textarea><br>
