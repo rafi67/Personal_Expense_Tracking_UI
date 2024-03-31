@@ -35,14 +35,19 @@ export class IncomeComponent implements OnInit {
     return temp;
   }
 
+  calculateTotalIncome(obj: Incomes[]) : void {
+    for(let i = 0; i<obj.length; i++) {
+      this.totalIncome += parseInt(obj[i].salaryAmount);
+    }
+  }
+
   ngOnInit(): void {
       this.incomeServices.getAllIncome().subscribe(res => {
         this.incomeList = res;
-        
+        this.calculateTotalIncome(this.incomeList);
         for(let i=0; i<res.length; i++) {
            let date = this.incomeList[i].date.toString();
            this.incomeList[i].date = this.dateFormatter(date);
-           this.totalIncome +=  parseInt(res[i].salaryAmount);
         }
       });
       this.incomeServices.getAllCategories().subscribe(
@@ -76,9 +81,11 @@ export class IncomeComponent implements OnInit {
               res[i].date = this.dateFormatter(temp);
             }
             this.incomeList = res;
+            this.calculateTotalIncome(this.incomeList);
           }
         );
         this.incomeForm.reset();
+        this.totalIncome = 0;
         this.selectedOption = 'option1';
       },
       error: () => {
@@ -97,6 +104,8 @@ export class IncomeComponent implements OnInit {
               res[i].date = this.dateFormatter(res[i].date);
             }
             this.incomeList = res;
+            this.totalIncome = 0;
+            this.calculateTotalIncome(this.incomeList);
           }
         );
       },
