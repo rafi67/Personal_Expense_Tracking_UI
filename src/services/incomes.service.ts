@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Categories, Incomes, AddIncomes } from '../models/income.model';
+import { Categories, Incomes } from '../models/income.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -17,10 +17,10 @@ export class IncomesService {
   }
 
   getIncome(id: string) : Observable<Incomes> {
-    return this.http.get<Incomes>(this.baseURL+"GetIncome?id="+id);
+    return this.http.get<Incomes>(this.baseURL+"GetIncome/+"+id);
   }
 
-  addIncome(obj: AddIncomes) : Observable<Response> {
+  addIncome(obj: Incomes) : Observable<Response> {
     return this.http.post<Response>(this.baseURL+"AddIncome", obj);
   }
   

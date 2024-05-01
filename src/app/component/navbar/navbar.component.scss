@@ -28,3 +28,23 @@ a{
     text-decoration: none;
     color: white;
 }
+
+@media (max-width: 768px) {
+    .icon {
+        display: none;
+    }
+
+    li {
+        margin-left: -16%;
+    }
+}
+
+@media (max-width: 992px) {
+    .icon {
+        display: none;
+    }
+
+    li {
+        margin-left: -16%;
+    }
+}

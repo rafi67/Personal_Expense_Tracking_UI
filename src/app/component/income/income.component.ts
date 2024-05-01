@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IncomesService } from '../../../services/incomes.service';
-import { AddIncomes, Categories, Incomes } from '../../../models/income.model';
+import { Categories, Incomes } from '../../../models/income.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,18 +10,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class IncomeComponent implements OnInit {
 
-  selectedOption: string = 'option1';
   incomeList: Incomes [] = [];
   totalIncome: number = 0;
   incomeForm!: FormGroup;
   categoryList: Categories [] = [];
-  addIncomes: AddIncomes  = {
+  addIncomes: Incomes  = {
     incomeId: '',
     salaryTitle: '',
     salaryAmount: '',
     categoryID: '',
     date: '',
     reference: '',
+    categories: {
+      categoryID: '',
+      categoryName: ''
+    }
   };
 
   constructor(private incomeServices: IncomesService, private formBuilder: FormBuilder) {}
@@ -41,25 +44,32 @@ export class IncomeComponent implements OnInit {
     }
   }
 
+  getAllIncomes() : void {
+    this.incomeServices.getAllIncome().subscribe(res => {
+      this.incomeList = res;
+      this.totalIncome = 0;
+      this.calculateTotalIncome(this.incomeList);
+      for(let i=0; i<res.length; i++) {
+         let date = this.incomeList[i].date.toString();
+         this.incomeList[i].date = this.dateFormatter(date);
+      }
+    });
+  }
+
   ngOnInit(): void {
-      this.incomeServices.getAllIncome().subscribe(res => {
-        this.incomeList = res;
-        this.calculateTotalIncome(this.incomeList);
-        for(let i=0; i<res.length; i++) {
-           let date = this.incomeList[i].date.toString();
-           this.incomeList[i].date = this.dateFormatter(date);
-        }
-      });
+      this.getAllIncomes();
+      
       this.incomeServices.getAllCategories().subscribe(
         res => {
           this.categoryList = res;
         }
       );
+
       this.incomeForm = this.formBuilder.group({
         incomeId: [''],
         salaryTitle: ['', Validators.required],
         salaryAmount: ['', Validators.required],
-        categoryID: ['', Validators.required],
+        categoryID: ['option1', Validators.required],
         date: ['', Validators.required],
         reference: ['', Validators.required],
       });
@@ -72,22 +82,23 @@ export class IncomeComponent implements OnInit {
     this.addIncomes.categoryID = this.incomeForm.controls['categoryID'].getRawValue();
     this.addIncomes.date = this.incomeForm.controls['date'].getRawValue();
     this.addIncomes.reference = this.incomeForm.controls['reference'].getRawValue();
+    this.addIncomes.categories = {
+      categoryID: '0',
+      categoryName: ''
+    }
+
+    console.log(this.addIncomes);
+
     this.incomeServices.addIncome(this.addIncomes).subscribe({
       next: () => {
-        this.incomeServices.getAllIncome().subscribe(
-          res => {
-            for(let i=0; i<res.length; i++) {
-              let temp = res[i].date;
-              res[i].date = this.dateFormatter(temp);
-            }
-            this.incomeList = res;
-            this.calculateTotalIncome(this.incomeList);
-          }
-        );
+        this.getAllIncomes();
+
         this.incomeForm.reset();
-        this.totalIncome = 0;
-        this.selectedOption = 'option1';
+
+        this.incomeForm.controls['categoryID'].setValue('option1');
       },
+
+
       error: () => {
         alert('Failed to add Data');
       },
@@ -98,16 +109,7 @@ export class IncomeComponent implements OnInit {
     this.incomeServices.deleteIncome(id).subscribe({
       next: () => {
         alert("Successfully Deleted");
-        this.incomeServices.getAllIncome().subscribe(
-          res => {  
-            for(let i = 0; i<res.length; i++) {
-              res[i].date = this.dateFormatter(res[i].date);
-            }
-            this.incomeList = res;
-            this.totalIncome = 0;
-            this.calculateTotalIncome(this.incomeList);
-          }
-        );
+        this.getAllIncomes();
       },
       error: () => {
         alert("Failed to Delete");
