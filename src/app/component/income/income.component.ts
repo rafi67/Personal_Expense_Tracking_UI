@@ -39,6 +39,7 @@ export class IncomeComponent implements OnInit {
   }
 
   calculateTotalIncome(obj: Incomes[]) : void {
+    this.totalIncome = 0;
     for(let i = 0; i<obj.length; i++) {
       this.totalIncome += parseInt(obj[i].salaryAmount);
     }
@@ -47,11 +48,12 @@ export class IncomeComponent implements OnInit {
   getAllIncomes() : void {
     this.incomeServices.getAllIncome().subscribe(res => {
       this.incomeList = res;
-      this.totalIncome = 0;
+
       this.calculateTotalIncome(this.incomeList);
+
+
       for(let i=0; i<res.length; i++) {
-         let date = this.incomeList[i].date.toString();
-         this.incomeList[i].date = this.dateFormatter(date);
+         this.incomeList[i].date = this.dateFormatter(res[i].date);
       }
     });
   }
@@ -87,8 +89,6 @@ export class IncomeComponent implements OnInit {
       categoryName: ''
     }
 
-    console.log(this.addIncomes);
-
     this.incomeServices.addIncome(this.addIncomes).subscribe({
       next: () => {
         this.getAllIncomes();
@@ -97,7 +97,6 @@ export class IncomeComponent implements OnInit {
 
         this.incomeForm.controls['categoryID'].setValue('option1');
       },
-
 
       error: () => {
         alert('Failed to add Data');
@@ -111,6 +110,7 @@ export class IncomeComponent implements OnInit {
         alert("Successfully Deleted");
         this.getAllIncomes();
       },
+
       error: () => {
         alert("Failed to Delete");
       }
