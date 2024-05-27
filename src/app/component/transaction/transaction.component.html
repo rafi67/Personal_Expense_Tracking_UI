@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="IncomeContainer">
+        <div class="headerDiv">
+            <h1 class="header">Incomes</h1>
+        </div>
+        <div class="incomeContainer OverFlow" id="style-3">
+            <div class="Income" *ngFor="let dataList of incomeList">
+                <div class="circle"></div>
+                <div class="SalaryTitle">
+                    <p class="SalaryParagraph">{{dataList.salaryTitle}}</p>
+                </div>
+                <div class="amount">
+                    <i class="fa fa-dollar" style="color: white;"></i>
+                    <p class="txtAmount">{{dataList.salaryAmount}}</p>
+                </div>
+                <div class="dateIcon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <div class="txtDate">
+                    <p style="width: 100px;">{{dataList.date}}</p>
+                </div>
+                <div class="commentIcon">
+                    <i class="fa fa-comment"></i>
+                </div>
+                <div class="txtReference">
+                    <p class="txtReferenceParagraph">{{dataList.reference}}</p>
+                </div>
+                <!--<div class="btnDeleteDiv">
+                    <button class="deleteBtn" (click)="deleteIncome(dataList.incomeId)">
+                        <i class="fa fa-trash" style="color:black;font-size:24px;"></i>
+                    </button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="ExpenseContainer">
+        <div class="headerDiv">
+            <h1 class="header">Expenses</h1>
+        </div>
+        <div class="expenseContainer OverFlow" id="style-3">
+            <div class="Expense" *ngFor="let dataList of expenseList">
+                <div class="circle"></div>
+                <div class="ExpenseTitle">
+                    <p class="ExpenseParagraph">{{dataList.expenseTitle}}</p>
+                </div>
+                <div class="amount">
+                    <i class="fa fa-dollar" style="color: white;"></i>
+                    <p class="txtAmount">{{dataList.expenseAmount}}</p>
+                </div>
+                <div class="dateIcon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <div class="txtDate">
+                    <p style="width: 100px;">{{dataList.expenseDate}}</p>
+                </div>
+                <div class="commentIcon">
+                    <i class="fa fa-comment"></i>
+                </div>
+                <div class="txtReference">
+                    <p class="txtReferenceParagraph">{{dataList.expenseReference}}</p>
+                </div>
+                <!--<div class="btnDeleteDiv">
+                    <button class="deleteBtn" (click)="deleteExpense(dataList.expenseID)">
+                        <i class="fa fa-trash" style="color:black;font-size:24px;"></i>
+                    </button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>

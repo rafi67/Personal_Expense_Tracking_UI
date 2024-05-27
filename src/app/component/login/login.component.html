@@ -1,0 +1,10 @@
+<div class="Form">
+    <form [formGroup]="loginForm" enctype="multipart/form-data">
+        <div class="Header"></div>
+        <label class="Margin">Enter your Email or User Name</label><br>
+        <input formControlName="userNameOrEmail" type="text"><br>
+        <label class="Margin">Enter your Password</label><br>
+        <input type="password" formControlName="password"><br>
+        <button class="Margin" (click)="Login()">Login</button>
+    </form>
+</div>

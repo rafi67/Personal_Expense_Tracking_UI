@@ -13,8 +13,8 @@ export class ExpensesService {
 
   constructor(private http: HttpClient) { }
 
-  getAllExpenses() : Observable<Expenses[]> {
-    return this.http.get<Expenses[]>(this.baseURL+"GetAllExpenses");
+  getAllExpenses(id: string) : Observable<Expenses[]> {
+    return this.http.get<Expenses[]>(this.baseURL+"GetAllExpenses/"+id);
   }
 
   getAllExpenseCategories() : Observable<ExpenseCategories[]> {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExpenseCategories, Expenses } from '../../../models/expense.model';
 import { ExpensesService } from '../../../services/expenses.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JwtTokenService } from '../../../services/jwt-token.service';
 
 @Component({
   selector: 'app-expense',
@@ -21,13 +22,27 @@ export class ExpenseComponent implements OnInit {
     expenseDate: '',
     expenseCategoryID: '',
     expenseReference: '',
+    userID: '',
     expenseCategories: {
       expenseCategoryID: '0',
       categoryName: ''
+    },
+    users: {
+      userID: '',
+      firstName: '',
+      lastName: '',
+      gender: '',
+      userName: '',
+      password: '',
+      email: '',
+      userPhoto: '',
+      userRole: ''
     }
   };
 
-  constructor(private expenseServices: ExpensesService, private formBuilder: FormBuilder) {}
+  constructor(private expenseServices: ExpensesService, private formBuilder: FormBuilder,
+    private jwtServices: JwtTokenService
+  ) {}
 
   ngOnInit(): void {
       this.getAllExpenses();
@@ -65,7 +80,8 @@ export class ExpenseComponent implements OnInit {
   }
 
   getAllExpenses() : void {
-    this.expenseServices.getAllExpenses().subscribe(
+
+    this.expenseServices.getAllExpenses(this.jwtServices.decodeToken().UserID).subscribe(
       res => {
         for(let i = 0; i<res.length; i++) {
           res[i].expenseDate = this.dateFormatter(res[i].expenseDate);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IncomesService } from '../../../services/incomes.service';
 import { Categories, Incomes } from '../../../models/income.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JwtTokenService } from '../../../services/jwt-token.service';
 
 @Component({
   selector: 'app-income',
@@ -21,13 +22,27 @@ export class IncomeComponent implements OnInit {
     categoryID: '',
     date: '',
     reference: '',
+    userID: '',
     categories: {
       categoryID: '',
       categoryName: ''
+    },
+    users: {
+      userID: '',
+      firstName: '',
+      lastName: '',
+      gender: '',
+      userName: '',
+      password: '',
+      email: '',
+      userPhoto: '',
+      userRole: ''
     }
   };
 
-  constructor(private incomeServices: IncomesService, private formBuilder: FormBuilder) {}
+  constructor(private incomeServices: IncomesService, private formBuilder: FormBuilder,
+    private jwtServices: JwtTokenService
+  ) {}
 
   dateFormatter(date: string) : string {
     let temp = "";
@@ -46,7 +61,7 @@ export class IncomeComponent implements OnInit {
   }
 
   getAllIncomes() : void {
-    this.incomeServices.getAllIncome().subscribe(res => {
+    this.incomeServices.getAllIncome(this.jwtServices.decodeToken().UserID).subscribe(res => {
       this.incomeList = res;
 
       this.calculateTotalIncome(this.incomeList);
@@ -60,7 +75,6 @@ export class IncomeComponent implements OnInit {
 
   ngOnInit(): void {
       this.getAllIncomes();
-      
       this.incomeServices.getAllCategories().subscribe(
         res => {
           this.categoryList = res;

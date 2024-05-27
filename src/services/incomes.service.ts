@@ -12,8 +12,8 @@ export class IncomesService {
   baseURL: string = "https://localhost:7112/api/Income/";
   baseURL2: string = "https://localhost:7112/api/Categories/";
 
-  getAllIncome() : Observable<Incomes[]> {
-    return this.http.get<Incomes[]>(this.baseURL+"GetAllIncomes");
+  getAllIncome(id: string) : Observable<Incomes[]> {
+    return this.http.get<Incomes[]>(this.baseURL+"GetAllIncomes/"+id);
   }
 
   getIncome(id: string) : Observable<Incomes> {

@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div>
     <ul>
-        <li><a><i class="icon fa fa-line-chart"></i>Dashboard</a></li>
-        <li><a><i class="icon fa fa-credit-card-alt"></i>View Transactions</a></li>
-        <li><a [routerLink]="['/Income']"><i class="icon fa fa-money"></i>Incomes</a></li>
-        <li><a [routerLink]="['/Expense']"><i class="icon fa fa-cc-mastercard"></i>Expenses</a></li>
+        <li><a [routerLink]="['/Layout/DashBoard']"><i class="icon fa fa-line-chart"></i>Dashboard</a></li>
+        <li><a [routerLink]="['/Layout/Transaction']"><i class="icon fa fa-credit-card-alt"></i>View Transactions</a></li>
+        <li><a [routerLink]="['/Layout/Income']"><i class="icon fa fa-money"></i>Incomes</a></li>
+        <li><a [routerLink]="['/Layout/Expense']"><i class="icon fa fa-cc-mastercard"></i>Expenses</a></li>
+        <li (click)="logout()"><a [routerLink]="['']"><i class="fa fa-sign-out" style="font-size:24px"></i>Logout</a></li>
     </ul>
 </div>

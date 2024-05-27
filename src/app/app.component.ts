@@ -1,29 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Incomes } from '../models/income.model';
-import { IncomesService } from '../services/incomes.service';
-import { ExpensesService } from '../services/expenses.service';
-import { Expenses } from '../models/expense.model';
+import { JwtTokenService } from '../services/jwt-token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Personal_Expense_Tracking_UI';
   incomeData: Incomes[] = [];
-  constructor(private incomeServices: IncomesService) {}
 
-  loadData() {
-    this.incomeServices.getAllIncome().subscribe(
-      res => {
-        this.incomeData = res;
-        for(let i=0; i<this.incomeData.length; i++) {
-          document.write('<p>'+this.incomeData[i].salaryAmount+'</p>');
-        }
-        alert("Successfull");
-      }
-    );
+  isLogin: boolean = false;
+  isLogout: boolean = false;
+
+  constructor(private jwtService: JwtTokenService, public container: ViewContainerRef, private router: Router) {}
+
+  ngOnInit(): void {
+     this.isLogin = !this.jwtService.isTokenExpired();
+     this.isLogout = !this.isLogin;
+     if(this.isLogin) {
+      this.router.navigate(['/Layout/DashBoard']);
+     }
+     else {
+      this.router.navigate(['/Login']);
+     }
   }
 
 }

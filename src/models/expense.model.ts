@@ -1,11 +1,15 @@
+import { User } from "./user.model";
+
 export interface Expenses {
     expenseID: string;
     expenseTitle: string;
     expenseAmount: string;
     expenseDate: string;
     expenseCategoryID: string;
-    expenseReference: string; 
-    expenseCategories: ExpenseCategories;   
+    expenseReference: string;
+    userID: string; 
+    expenseCategories: ExpenseCategories;
+    users: User   
 }
 
 export interface ExpenseCategories {
