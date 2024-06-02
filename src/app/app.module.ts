@@ -14,6 +14,8 @@ import { JWT_OPTIONS, JwtHelperService, JwtInterceptor, JwtModule } from '@auth0
 import { JwtInterceptorService } from '../services/jwt-interceptor.service';
 import { TransactionComponent } from './component/transaction/transaction.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { ChangeUserPasswordComponent } from './component/change-user-password/change-user-password.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
     LoginComponent,
     TransactionComponent,
     DashboardComponent,
+    ChangeUserPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
     FormsModule,
     ReactiveFormsModule,
     JwtModule,
+    NgbModule,
   ],
   providers: [
     provideClientHydration(), provideHttpClient(withFetch()),

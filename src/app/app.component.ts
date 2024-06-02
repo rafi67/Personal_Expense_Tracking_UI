@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
      this.isLogin = !this.jwtService.isTokenExpired();
      this.isLogout = !this.isLogin;
      if(this.isLogin) {
-      this.router.navigate(['/Layout/DashBoard']);
+      this.router.navigate(['/Layout']);
      }
      else {
       this.router.navigate(['/Login']);
