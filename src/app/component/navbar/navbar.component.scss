@@ -87,3 +87,17 @@ a{
     text-decoration: none;
     cursor: pointer;
   }
+
+  .icon2 {
+    display: inline-block;
+    width: 24px; /* Adjust the size as needed */
+    height: 24px; /* Adjust the size as needed */
+    background-image: url('/assets/icons/changePassword (2).png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  a {
+    cursor: pointer;
+  }
+  

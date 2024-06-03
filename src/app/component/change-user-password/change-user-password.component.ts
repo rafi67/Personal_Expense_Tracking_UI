@@ -1,51 +1,60 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-@Component({
-	selector: 'ngbd-modal-content',
-	standalone: true,
-	template: `
-		<div class="modal-header">
-			<h4 class="modal-title">Hi there!</h4>
-			<button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
-		</div>
-		<div class="modal-body">
-			<p>Hello, {{ name }}!</p>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-		</div>
-	`,
-})
-export class NgbdModalContent {
-	activeModal = inject(NgbActiveModal);
-
-	@Input() name!: string;
-}
+import { UserService } from '../../../services/user.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserData } from '../../../models/user.model';
 
 @Component({
   selector: 'app-change-user-password',
   templateUrl: './change-user-password.component.html',
+  standalone: false,
   styleUrl: './change-user-password.component.scss'
 })
 export class ChangeUserPasswordComponent implements OnInit {
 
+	activeModal = inject(NgbActiveModal);
+
+	userPasswordForm!: FormGroup;
+	userList: UserData [] = [];
+
   private modalService = inject(NgbModal);
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userServices: UserService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-      this.open();
+	this.userPasswordForm = this.formBuilder.group({
+		userId: '',
+		password: '',
+	});
+
+	this.userPasswordForm.controls['userId'].setValue('option1');
+
+	this.userServices.getAllUser().subscribe(
+		data => this.userList = data
+	);
   }
 
-  open() : void {
+	close() : void {
+		this.activeModal.dismiss('Cross click');
+		this.router.navigate(['/Layout']);
+	}
+
+	closeModal() : void {
+		this.activeModal.close('Close click');
+		this.router.navigate(['/Layout']);
+	}
+
+	changePassword() : void {
+		let id = this.userPasswordForm.controls['userId'].getRawValue();
+		let password = this.userPasswordForm.controls['password'].getRawValue();
+		this.userServices.changePassword(id, password).subscribe();
+		this.closeModal();
+	}
+
+  /*open() : void {
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.name = 'World';
-  }
-
-  close() : void {
-    this.router.navigate(['/Layout']);
-  }
+  }*/
 
 }

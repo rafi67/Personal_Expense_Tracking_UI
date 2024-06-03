@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post<Response>(this.baseUrl+'Login', obj);
   }
 
+  changePassword(id: string, password: string) : Observable<Response> {
+    return this.http.get<Response>(this.baseUrl+'ChangePassword/'+id+'/'+password);
+  }
+
   updateUser(obj: User) : Observable<Response> {
     return this.http.put<Response>(this.baseUrl+'UpdateUser', obj);
   }

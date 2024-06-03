@@ -1,8 +1,10 @@
-import { Component, Injectable, ViewChild } from '@angular/core';
+import { Component, Injectable, ViewChild, inject } from '@angular/core';
 import { JwtTokenService } from '../../../services/jwt-token.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../../app.component';
 import { ChangeUserPasswordComponent } from '../change-user-password/change-user-password.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteUserComponent } from '../delete-user/delete-user.component';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +18,18 @@ export class NavbarComponent {
 
   @ViewChild(ChangeUserPasswordComponent) modal!: ChangeUserPasswordComponent;
 
+  private modalService = inject(NgbModal);
+
   constructor(private jwtServices: JwtTokenService, private router: Router, private appComponent: AppComponent) {}
 
   openModal() : void {
-    this.modal.open();
+    const modalRef = this.modalService.open(ChangeUserPasswordComponent);
+    modalRef.componentInstance.name = 'World';
   }
 
-  closeModal() : void {
-    this.modal.close();
+  openDeleteUser() : void {
+    const modalRef = this.modalService.open(DeleteUserComponent);
+    modalRef.componentInstance.name = 'World2';
   }
 
   logout() {

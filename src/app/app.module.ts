@@ -16,6 +16,8 @@ import { TransactionComponent } from './component/transaction/transaction.compon
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ChangeUserPasswordComponent } from './component/change-user-password/change-user-password.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { DeleteUserComponent } from './component/delete-user/delete-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TransactionComponent,
     DashboardComponent,
     ChangeUserPasswordComponent,
+    DeleteUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     JwtModule,
     NgbModule,
+    CommonModule,
   ],
   providers: [
     provideClientHydration(), provideHttpClient(withFetch()),
