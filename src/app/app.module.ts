@@ -18,6 +18,7 @@ import { ChangeUserPasswordComponent } from './component/change-user-password/ch
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { DeleteUserComponent } from './component/delete-user/delete-user.component';
+import { SignupComponent } from './component/signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { DeleteUserComponent } from './component/delete-user/delete-user.compone
     DashboardComponent,
     ChangeUserPasswordComponent,
     DeleteUserComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
