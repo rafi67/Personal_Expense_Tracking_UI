@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add Income</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="incomeForm">
+        <div class="form-group">
+            <label class="form-label text-dark">Salary Title</label>
+            <input formControlName="salaryTitle" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="formGroup">
+            <label class="form-label text-dark">Salary Amount</label>
+            <input formControlName="salaryAmount" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">Select an Category</label>
+            <select formControlName="categoryID" class="form-select" aria-label="Default select example">
+                <option value="option1" selected>Select Category</option>
+                <option value="{{item.categoryID}}" *ngFor="let item of categoryList">{{item.categoryName}}</option>
+            </select>
+        </div>
+        <div class="formGroup">
+            <label class="form-label text-dark">Date</label>
+            <input formControlName="date" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div><br>
+        <div class="formGroup">
+            <label class="form-label text-dark">Reference</label>
+            <input formControlName="reference" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div><br>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" (click)="addIncome()">Add</button>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Close</button>
+</div>

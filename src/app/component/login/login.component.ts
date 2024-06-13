@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         else {
           this.jwtTokenServices.setToken(token.token);
           this.appComponent.isLogin = !this.jwtTokenServices.isTokenExpired();
-          this.router.navigate(['/Layout']);
+          this.router.navigate(['/Navbar']);
         }
       }
     );

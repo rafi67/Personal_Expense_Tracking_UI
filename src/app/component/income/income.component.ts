@@ -91,33 +91,6 @@ export class IncomeComponent implements OnInit {
       });
   }
 
-  addIncome() : void {
-    this.addIncomes.incomeId = '0',
-    this.addIncomes.salaryTitle = this.incomeForm.controls['salaryTitle'].getRawValue();
-    this.addIncomes.salaryAmount = this.incomeForm.controls['salaryAmount'].getRawValue();
-    this.addIncomes.categoryID = this.incomeForm.controls['categoryID'].getRawValue();
-    this.addIncomes.date = this.incomeForm.controls['date'].getRawValue();
-    this.addIncomes.reference = this.incomeForm.controls['reference'].getRawValue();
-    this.addIncomes.categories = {
-      categoryID: '0',
-      categoryName: ''
-    }
-
-    this.incomeServices.addIncome(this.addIncomes).subscribe({
-      next: () => {
-        this.getAllIncomes();
-
-        this.incomeForm.reset();
-
-        this.incomeForm.controls['categoryID'].setValue('option1');
-      },
-
-      error: () => {
-        alert('Failed to add Data');
-      },
-    });
-  }
-
   deleteIncome(id: string) : void {
     this.incomeServices.deleteIncome(id).subscribe({
       next: () => {

@@ -10,6 +10,11 @@ export interface User {
     userRole: string;
 }
 
+export interface UserImage {
+    userID: string;
+    formData: FormData;
+}
+
 export interface UserData {
     userID: string;
     firstName: string;

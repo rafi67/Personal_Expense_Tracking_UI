@@ -1,0 +1,51 @@
+
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+    <form [formGroup]="signupForm" enctype="multipart/form-data">
+        <div class="mb-3">
+            <h1 class="text-dark text-lg-center">Signup</h1>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-auto">
+                <label class="form-label text-dark">First Name</label>
+                <input formControlName="firstName" type="text" name="user_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 col-auto">
+                <label for="exampleInputEmail1" class="form-label text-dark">Last Name</label>
+                <input type="text" formControlName="lastName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label text-dark">User Name</label>
+            <input type="text" formControlName="userName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label text-dark">Email</label>
+            <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="row">
+            <div class="mb-3 col-auto">
+                <label for="exampleInputPassword1" class="form-label text-dark">Password</label>
+                <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 col-auto">
+                <label for="exampleInputPassword1" class="form-label text-dark">Confirm Password</label>
+                <input type="password" formControlName="confirmPassword" class="form-control" id="exampleInputPassword1">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label text-dark">Gender</label>
+            <select class="form-select" formControlName="gender" aria-label="Default select example">
+                <option value="option1" selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label text-dark">Select an Image</label>
+            <input type="file" class="form-control" id="exampleInputPassword1" (change)="onFileSelected($event)"    multiple
+            
+            #f_input>
+        </div>
+        <button type="button"  class="btn btn-primary" (click)="Signup()">Signup</button>
+    </form>
+</div>

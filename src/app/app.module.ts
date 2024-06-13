@@ -19,6 +19,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { DeleteUserComponent } from './component/delete-user/delete-user.component';
 import { SignupComponent } from './component/signup/signup.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { AddIncomeComponent } from './component/add-income/add-income.component';
+import { AddExpenseComponent } from './component/add-expense/add-expense.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +35,9 @@ import { SignupComponent } from './component/signup/signup.component';
     ChangeUserPasswordComponent,
     DeleteUserComponent,
     SignupComponent,
+    FooterComponent,
+    AddIncomeComponent,
+    AddExpenseComponent,
   ],
   imports: [
     BrowserModule,

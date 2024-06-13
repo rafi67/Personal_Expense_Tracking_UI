@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { JwtToken } from '../models/user.model';
+import { JwtToken, UserImage } from '../models/user.model';
 import { Login } from '../models/login.model';
+import { userData } from '../UserData/UserData';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,16 @@ export class AuthenticationService {
 
   login(obj: Login) : Observable<JwtToken> {
     return this.http.post<JwtToken>(this.baseUrl+'Login', obj);
+  }
+
+  signup(obj: userData) : Observable<JwtToken> {
+    return this.http.post<JwtToken>(this.baseUrl+'Signup', obj);
+  }
+
+  uploadImage(image: File, id: string) : Observable<Response> {
+    var formData = new FormData();
+    formData.append('image', image);
+    return this.http.post<Response>(this.baseUrl+'UploadImage/'+id, formData);
   }
 
 }

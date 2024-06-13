@@ -1,12 +1,46 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div>
-    <ul>
-        <li><a [routerLink]="['/Layout/DashBoard']"><i class="icon fa fa-line-chart"></i>Dashboard</a></li>
-        <li><a [routerLink]="['/Layout/Transaction']"><i class="icon fa fa-credit-card-alt"></i>View Transactions</a></li>
-        <li><a [routerLink]="['/Layout/Income']"><i class="icon fa fa-money"></i>Incomes</a></li>
-        <li><a [routerLink]="['/Layout/Expense']"><i class="icon fa fa-cc-mastercard"></i>Expenses</a></li>
-        <li><a (click)="openModal()"><i class="icon2"></i>Change User Password</a></li>
-        <li><a (click)="openDeleteUser()">Delete User</a></li>
-        <li (click)="logout()"><a [routerLink]="['']"><i class="fa fa-sign-out" style="font-size:24px"></i>Logout</a></li>
-    </ul>
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" [routerLink]="['/Navbar/DashBoard']">DashBoard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-top: -1%;">
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" [routerLink]="['/Navbar/DashBoard']">DashBoard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" [routerLink]="['/Navbar/Transaction']">Transactions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" [routerLink]="['/Navbar/Income']">Income</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" (click)="openAddIncomeModal()">Add Income</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" (click)="openAddExpenseModal()">Add Expense</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" [routerLink]="['/Navbar/Expense']">Expense</a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="userRole=='Admin'">
+            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Settings
+            </a>
+            <ul class="dropdown-menu">
+                <li><a (click)="openModalChangePassword()" class="text-dark dropdown-item">Change User Password</a></li>
+                <li><a (click)="openDeleteUser()" class="text-dark dropdown-item">Delete User</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+    <router-outlet></router-outlet>
 </div>
+<app-footer></app-footer>

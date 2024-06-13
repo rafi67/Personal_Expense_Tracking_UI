@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserData } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
+import { userData } from '../../../UserData/UserData';
 
 @Component({
   selector: 'app-delete-user',
@@ -21,26 +22,29 @@ export class DeleteUserComponent implements OnInit {
 
   ngOnInit(): void {
     
+    this.userServices.getAllUser().subscribe(
+      userData => {
+        this.userList = userData;
+        this.userList.shift();
+      }
+    );
+
+    
+
     this.deleteUserForm = this.formBuilder.group({
       userId: '',
     });
 
-    this.deleteUserForm.controls['userId'].setValue('option1');
-
-    this.userServices.getAllUser().subscribe(
-      userData => this.userList = userData
-    );
+    this.deleteUserForm.controls['userId'].setValue('option1'); 
 
   }
 
   closeModal() : void {
     this.activeModal.close('Close click');
-    //this.router.navigate(['/Layout']);
   }
 
   close() : void {
     this.activeModal.dismiss('Cross click');
-    //this.router.navigate(['/Layout']);
   }
 
   deleteUser() : void {

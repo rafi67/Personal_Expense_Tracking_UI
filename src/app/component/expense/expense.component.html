@@ -1,54 +1,20 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="box">
-    <div class="headerDiv">
-        <h1 class="header">Expenses</h1>
-    </div>
-    <div class="totalExpense">
-        <p class="Padding">Total Expense:${{totalExpense}}</p>
-    </div>
-    <div class="container">
-        <div class="Form">
-            <form [formGroup]="expenseForm" enctype="multipart/form-data" (ngSubmit)="addExpense()">
-                <input type="text" formControlName="expenseTitle" placeholder="Expense Title"><br>
-                <input type="text" formControlName="expenseAmount" placeholder="Expense Amount"><br>
-                <input type="text" formControlName="expenseDate" onfocus="(this.type='date')" placeholder="Enter A Date"><br>
-                <select formControlName="expenseCategoryID">
-                    <option value="option1" selected>Select your Option</option>
-                    <option value="{{item.expenseCategoryID}}" *ngFor="let item of expenseCategoryList">{{item.categoryName}}</option>
-                </select><br>
-                <textarea type="text" formControlName="expenseReference" placeholder="Add a Reference"></textarea><br>
-                <button type="submit"><i class="fa fa-plus"></i>Add</button>
-            </form>
-        </div>
-        <div class="expenseContainer OverFlow" id="style-3">
-            <div class="Expense" *ngFor="let dataList of expenseList">
-                <div class="circle"></div>
-                <div class="ExpenseTitle">
-                    <p class="ExpenseParagraph">{{dataList.expenseTitle}}</p>
-                </div>
-                <div class="amount">
-                    <i class="fa fa-dollar" style="color: white;"></i>
-                    <p class="txtAmount">{{dataList.expenseAmount}}</p>
-                </div>
-                <div class="dateIcon">
-                    <i class="fa fa-calendar"></i>
-                </div>
-                <div class="txtDate">
-                    <p style="width: 100px;">{{dataList.expenseDate}}</p>
-                </div>
-                <div class="commentIcon">
-                    <i class="fa fa-comment"></i>
-                </div>
-                <div class="txtReference">
-                    <p class="txtReferenceParagraph">{{dataList.expenseReference}}</p>
-                </div>
-                <div class="btnDeleteDiv">
-                    <button class="deleteBtn" (click)="deleteExpense(dataList.expenseID)">
-                        <i class="fa fa-trash" style="color:black;font-size:24px;"></i>
-                    </button>
+<div class="row pb-3">
+    <h1>Total Expense: {{totalExpense}} USD</h1>
+    <div class="col-lg-3 col-sm-6" *ngFor="let item of expenseList">
+        <div class="row p-2">
+            <div class="col-12 p-1">
+                <div class="card border 0 p-3 shadow border-top border-5 rounded">
+                    <div class="card-body pb-0" style="height: 250px;">
+                        <div class="pl-1">
+                            <p class="card-title h5 text-dark opacity-75 text-center">Salary Title: {{item.expenseTitle}}</p>
+                            <p class="card-title h5 text-dark opacity-75 text-center">Salary Amount: {{item.expenseAmount}} USD</p>
+                            <p class="card-title h5 text-dark opacity-75 text-center">Category: {{item.expenseCategories.categoryName}}</p>
+                            <p class="card-title h5 text-dark opacity-75 text-center">Comment: {{item.expenseReference}}</p>   
+                        </div>            
+                    </div>
+                    <button type="button" class="btn btn-danger" (click)="deleteExpense(item.expenseID)">Delete</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

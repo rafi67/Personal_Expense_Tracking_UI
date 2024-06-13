@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
             label: 'Transaction', 
             data: [this.totalIncome, this.totalExpense, 10000, 20000, 30000],
             borderWidth: 1,
-            borderColor: 'white',
+            borderColor: 'black',
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
           }
         ],
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
         plugins: {
             legend: {
               labels: {
-                color: 'white',
+                color: 'black',
                 font: {
                   size: 18,
                 },
@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
           y: {
             beginAtZero: true,
             ticks: {
-              color: 'white',
+              color: 'black',
               font: {
                 size: 18,
               },
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
           },
           x: {
             ticks: {
-              color: 'white',
+              color: 'black',
               font: {
                 size: 18,
               },
