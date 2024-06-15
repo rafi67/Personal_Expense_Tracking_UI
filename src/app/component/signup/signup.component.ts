@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User, UserImage } from '../../../models/user.model';
+import { User } from '../../../models/user.model';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { JwtTokenService } from '../../../services/jwt-token.service';
 
@@ -61,21 +61,25 @@ export class SignupComponent implements OnInit {
     this.userData.password = this.signupForm.controls['password'].getRawValue();
     this.userData.email = this.signupForm.controls['email'].getRawValue();
     this.userData.userRole = 'user';
-
     this.authServices.signup(this.userData).subscribe(
       res => {
         alert(res.message);
         this.jwtTokenServices.setToken(res.token);
-        let token = this.jwtTokenServices.decodeToken();
-        /*this.authServices.uploadImage(this.selectedFile, token.UserID).subscribe(
-          res => {
-            alert(res);
-          }
-        );*/
+        if(this.selectedFile!=null) {
+          const formData = new FormData();
+          formData.append("image", this.selectedFile);
+          this.authServices.uploadImage(formData).subscribe(
+            res => {
+              alert(res);
+              this.signupForm.reset();
+              this.signupForm.controls['gender'].setValue('option1');
+              this.router.navigate(['/Navbar/DashBoard']);
+            }
+          );
+        }
+        else alert('File is empty');
       }
     );
-
-    this.router.navigate(['/Layout']);
 
   }
   

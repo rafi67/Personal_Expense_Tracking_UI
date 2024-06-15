@@ -4,7 +4,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import { LayoutComponent } from './component/layout/layout.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { IncomeComponent } from './component/income/income.component';
 import { ExpenseComponent } from './component/expense/expense.component';
@@ -25,7 +24,6 @@ import { AddExpenseComponent } from './component/add-expense/add-expense.compone
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent,
     NavbarComponent,
     IncomeComponent,
     ExpenseComponent,

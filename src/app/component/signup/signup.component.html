@@ -42,9 +42,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label text-dark">Select an Image</label>
-            <input type="file" class="form-control" id="exampleInputPassword1" (change)="onFileSelected($event)"    multiple
-            
-            #f_input>
+            <input type="file" class="form-control" formControlName="userPhoto" (change)="onFileSelected($event)">
         </div>
         <button type="button"  class="btn btn-primary" (click)="Signup()">Signup</button>
     </form>

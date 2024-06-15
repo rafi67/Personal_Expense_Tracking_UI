@@ -11,8 +11,8 @@ export interface User {
 }
 
 export interface UserImage {
-    userID: string;
-    formData: FormData;
+    userID: number;
+    file: FormData;
 }
 
 export interface UserData {
