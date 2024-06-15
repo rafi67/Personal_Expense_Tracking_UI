@@ -18,7 +18,7 @@ export class DeleteUserComponent implements OnInit {
   deleteUserForm!: FormGroup;
   userList: UserData [] = [];
 
-  constructor(private router: Router, private userServices: UserService, private formBuilder: FormBuilder) {}
+  constructor(private userServices: UserService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     
@@ -49,7 +49,12 @@ export class DeleteUserComponent implements OnInit {
 
   deleteUser() : void {
     var id = this.deleteUserForm.controls['userId'].getRawValue();
-    this.userServices.deleteUser(id);
+    this.userServices.deleteUser(id).subscribe(
+      res => {
+        if(res.toString()==='200') alert('Deleted Successfully');
+        else alert('failed to delete');
+      }
+    );
     this.closeModal();
   }
 

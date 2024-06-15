@@ -21,6 +21,9 @@ import { SignupComponent } from './component/signup/signup.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { AddIncomeComponent } from './component/add-income/add-income.component';
 import { AddExpenseComponent } from './component/add-expense/add-expense.component';
+import { AddIncomeCategoryComponent } from './component/add-income-category/add-income-category.component';
+import { AddExpenseCategoryComponent } from './component/add-expense-category/add-expense-category.component';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +39,9 @@ import { AddExpenseComponent } from './component/add-expense/add-expense.compone
     FooterComponent,
     AddIncomeComponent,
     AddExpenseComponent,
+    AddIncomeCategoryComponent,
+    AddExpenseCategoryComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

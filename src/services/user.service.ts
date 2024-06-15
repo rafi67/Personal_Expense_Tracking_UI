@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Login } from '../models/login.model';
 import { Observable } from 'rxjs';
 import { JwtToken, User } from '../models/user.model';
 
@@ -29,6 +28,9 @@ export class UserService {
     return this.http.get<Response>(this.baseUrl+'ChangePassword/'+id+'/'+password);
   }
 
+  getUserImage(id: string) : Observable<Blob> {
+    return this.http.get(this.baseUrl+"GetUserImage/"+id, { responseType: 'blob' });
+  }
   updateUser(obj: User) : Observable<Response> {
     return this.http.put<Response>(this.baseUrl+'UpdateUser', obj);
   }
@@ -36,7 +38,5 @@ export class UserService {
   deleteUser(id: string): Observable<Response> {
     return this.http.delete<Response>(this.baseUrl+'DeleteUser/'+id);
   }
-
-  
   
 }

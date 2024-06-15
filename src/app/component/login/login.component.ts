@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { JwtTokenService } from '../../../services/jwt-token.service';
 import { Router } from '@angular/router';
-import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private authenticationServices: AuthenticationService, private jwtTokenServices: JwtTokenService,
-    private router: Router, private appComponent: AppComponent
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
         }
         else {
           this.jwtTokenServices.setToken(token.token);
-          this.appComponent.isLogin = !this.jwtTokenServices.isTokenExpired();
           this.router.navigate(['/Navbar/DashBoard']);
         }
       }

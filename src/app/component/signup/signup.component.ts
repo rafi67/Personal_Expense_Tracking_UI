@@ -62,15 +62,14 @@ export class SignupComponent implements OnInit {
     this.userData.email = this.signupForm.controls['email'].getRawValue();
     this.userData.userRole = 'user';
     this.authServices.signup(this.userData).subscribe(
-      res => {
-        alert(res.message);
-        this.jwtTokenServices.setToken(res.token);
+      res1 => {  
+        this.jwtTokenServices.setToken(res1.token);
         if(this.selectedFile!=null) {
           const formData = new FormData();
           formData.append("image", this.selectedFile);
           this.authServices.uploadImage(formData).subscribe(
             res => {
-              alert(res);
+              if(res.toString()=='200') alert(res1.message);
               this.signupForm.reset();
               this.signupForm.controls['gender'].setValue('option1');
               this.router.navigate(['/Navbar/DashBoard']);
