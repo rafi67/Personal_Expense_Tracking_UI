@@ -24,6 +24,7 @@ import { AddExpenseComponent } from './component/add-expense/add-expense.compone
 import { AddIncomeCategoryComponent } from './component/add-income-category/add-income-category.component';
 import { AddExpenseCategoryComponent } from './component/add-expense-category/add-expense-category.component';
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
+import { ChangeProfileComponent } from './component/change-profile/change-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { ChangePasswordComponent } from './component/change-password/change-pass
     AddIncomeCategoryComponent,
     AddExpenseCategoryComponent,
     ChangePasswordComponent,
+    ChangeProfileComponent,
   ],
   imports: [
     BrowserModule,
