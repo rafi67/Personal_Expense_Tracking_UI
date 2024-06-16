@@ -1,15 +1,15 @@
 <div class="row pb-3">
     <h1>Income</h1>
-    <div class="col-lg-3 col-sm-6" *ngFor="let item of incomeList">
+    <div class="col-lg-3 col-sm-6" style="width: 20rem;" *ngFor="let item of incomeList">
         <div class="row p-2">
             <div class="col-12 p-1">
                 <div class="card border 0 p-3 shadow border-top border-5 rounded">
                     <div class="card-body pb-0" style="height: 250px;">
                         <div class="pl-1">
-                            <p class="card-title h5 text-dark opacity-75 text-center">Salary Title: {{item.salaryTitle}}</p>
-                            <p class="card-title h5 text-dark opacity-75 text-center">Salary Amount: {{item.salaryAmount}} USD</p>
-                            <p class="card-title h5 text-dark opacity-75 text-center">Category: {{item.categories.categoryName}}</p>
-                            <p class="card-title h5 text-dark opacity-75 text-center">Comment: {{item.reference}}</p>   
+                            <p class="card-title text-nowrap text-dark opacity-75 text-center">Salary Title: {{item.salaryTitle}}</p>
+                            <p class="card-text text-nowrap text-dark opacity-75 text-center">Salary Amount: {{item.salaryAmount}} USD</p>
+                            <p class="card-text text-nowrap text-dark opacity-75 text-center">Category: {{item.categories.categoryName}}</p>
+                            <p class="card-text text-nowrap text-dark opacity-75 text-center">Comment: {{item.reference}}</p>   
                         </div>            
                     </div>
                 </div>
@@ -19,16 +19,16 @@
 </div>
 <div class="row pb-3">
     <h1 class="text-">Expense</h1>
-    <div class="col-lg-3 col-sm-6" *ngFor="let item of expenseList">
+    <div class="col-lg-3 col-sm-6" *ngFor="let item of expenseList" style="width: 20rem;">
         <div class="row p-2">
-            <div class="col-12 p-1">
+            <div class="col-12 p-1" style="width: 20rem;">
                 <div class="card border 0 p-3 shadow border-top border-5 rounded">
                     <div class="card-body pb-0" style="height: 250px;">
                         <div class="pl-1">
-                            <p class="card-title h5 text-dark opacity-75 text-center">Salary Title: {{item.expenseTitle}}</p>
-                            <p class="card-title h5 text-dark opacity-75 text-center">Salary Amount: {{item.expenseAmount}} USD</p>
-                            <p class="card-title h5 text-dark opacity-75 text-center">Category: {{item.expenseCategories.categoryName}}</p>
-                            <p class="card-title h5 text-dark opacity-75 text-center">Comment: {{item.expenseReference}}</p>   
+                            <p class="card-title text-nowrap text-dark opacity-75 text-center">Expense Title: {{item.expenseTitle}}</p>
+                            <p class="card-text text-nowrap text-dark opacity-75 text-center">Expense Amount: {{item.expenseAmount}} USD</p>
+                            <p class="card-text text-nowrap text-dark opacity-75 text-center">Expense Category: {{item.expenseCategories.categoryName}}</p>
+                            <p class="card-text text-nowrap text-dark opacity-75 text-center">Comment: {{item.expenseReference}}</p>   
                         </div>            
                     </div>
                 </div>

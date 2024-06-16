@@ -9,6 +9,7 @@ import { AddExpenseComponent } from '../add-expense/add-expense.component';
 import { UserService } from '../../../services/user.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { ChangeProfileComponent } from '../change-profile/change-profile.component';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild(AddIncomeComponent) modal2!: AddIncomeComponent;
   @ViewChild(AddExpenseComponent) modal3!: AddExpenseComponent;
   @ViewChild(ChangePasswordComponent) modal4!: ChangePasswordComponent;
+  @ViewChild(ChangeProfileComponent) modal5!: ChangeProfileComponent;
 
   private modalService = inject(NgbModal);
   userRole: string = '';
@@ -36,6 +38,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
       this.userRole = this.jwtServices.decodeToken().UserRole;
       this.loadUserImage();
+  }
+
+  openChangeProfile() : void {
+    const modalRef = this.modalService.open(ChangeProfileComponent);
+    modalRef.componentInstance.name = 'World6';
   }
 
   openModalChangePassword() : void {

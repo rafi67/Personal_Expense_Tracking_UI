@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JwtToken, User } from '../models/user.model';
+import { JwtTokenService } from './jwt-token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserService {
 
   baseUrl = 'https://localhost:7112/api/Users/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwtToken: JwtTokenService) { }
 
   getAllUser() : Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl+'GetAllUser');
@@ -33,6 +34,10 @@ export class UserService {
   }
   updateUser(obj: User) : Observable<Response> {
     return this.http.put<Response>(this.baseUrl+'UpdateUser', obj);
+  }
+
+  updateUserImage(image: FormData) : Observable<any> {
+    return this.http.put<Response>(this.baseUrl+'UpdateUserImage/'+this.jwtToken.decodeToken().UserID, image);
   }
 
   deleteUser(id: string): Observable<Response> {

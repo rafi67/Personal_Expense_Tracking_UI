@@ -3,13 +3,13 @@
     <div class="col-lg-3 col-sm-6" *ngFor="let item of incomeList">
         <div class="row p-2">
             <div class="col-12 p-1">
-                <div class="card border 0 p-3 shadow border-top border-5 rounded">
-                    <div class="card-body pb-0" style="height: 250px;">
+                <div class="card border 0 p-3 shadow border-top border-5 rounded" style="width: 20rem;">
+                    <div class="card-body text-center" style="height: 250px;">
                         <div class="pl-1">
-                            <p class="card-title h5 text-dark opacity-75 text-center">Salary Title: {{item.salaryTitle}}</p>
-                            <p class="card-title h5 text-dark opacity-75 text-center">Salary Amount: {{item.salaryAmount}} USD</p>
-                            <p class="card-title h5 text-dark opacity-75 text-center">Category: {{item.categories.categoryName}}</p>
-                            <p class="card-title h5 text-dark opacity-75 text-center">Comment: {{item.reference}}</p>   
+                            <p class="card-title text-center text-nowrap text-dark  opacity-75">Salary Title: {{item.salaryTitle}}</p>
+                            <p class="card-title text-center text-nowrap text-dark opacity-75 text-center">Salary Amount: {{item.salaryAmount}} USD</p>
+                            <p class="card-title text-center text-nowrap text-dark opacity-75 text-center">Category: {{item.categories.categoryName}}</p>
+                            <p class="card-title text-center text-nowrap text-dark opacity-75 text-center">Comment: {{item.reference}}</p>   
                         </div>            
                     </div>
                     <button type="button" class="btn btn-danger" (click)="deleteIncome(item.incomeId)">Delete</button>

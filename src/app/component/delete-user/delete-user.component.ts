@@ -2,9 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserData } from '../../../models/user.model';
-import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { userData } from '../../../UserData/UserData';
 
 @Component({
   selector: 'app-delete-user',
