@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { JwtTokenService } from '../../../services/jwt-token.service';
 import { Router } from '@angular/router';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private authenticationServices: AuthenticationService, private jwtTokenServices: JwtTokenService,
-    private router: Router
+    private router: Router, private toastr: ToastComponent
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
         }
         else {
           this.jwtTokenServices.setToken(token.token);
+          this.toastr.showSuccess('Done', 'Login');
           this.router.navigate(['/Navbar/DashBoard']);
         }
       }

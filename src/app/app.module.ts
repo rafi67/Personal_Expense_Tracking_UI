@@ -9,7 +9,7 @@ import { IncomeComponent } from './component/income/income.component';
 import { ExpenseComponent } from './component/expense/expense.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './component/login/login.component';
-import { JWT_OPTIONS, JwtHelperService, JwtInterceptor, JwtModule } from '@auth0/angular-jwt';
+import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { JwtInterceptorService } from '../services/jwt-interceptor.service';
 import { TransactionComponent } from './component/transaction/transaction.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
@@ -21,10 +21,11 @@ import { SignupComponent } from './component/signup/signup.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { AddIncomeComponent } from './component/add-income/add-income.component';
 import { AddExpenseComponent } from './component/add-expense/add-expense.component';
-import { AddIncomeCategoryComponent } from './component/add-income-category/add-income-category.component';
-import { AddExpenseCategoryComponent } from './component/add-expense-category/add-expense-category.component';
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
 import { ChangeProfileComponent } from './component/change-profile/change-profile.component';
+import { ToastNoAnimationModule, provideToastr } from 'ngx-toastr';
+import { ToastComponent } from './component/toast/toast.component';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,10 +41,9 @@ import { ChangeProfileComponent } from './component/change-profile/change-profil
     FooterComponent,
     AddIncomeComponent,
     AddExpenseComponent,
-    AddIncomeCategoryComponent,
-    AddExpenseCategoryComponent,
     ChangePasswordComponent,
     ChangeProfileComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +54,8 @@ import { ChangeProfileComponent } from './component/change-profile/change-profil
     JwtModule,
     NgbModule,
     CommonModule,
+    ToastNoAnimationModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [
     provideClientHydration(), provideHttpClient(withFetch()),
@@ -61,6 +63,8 @@ import { ChangeProfileComponent } from './component/change-profile/change-profil
     {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
     JwtHelperService,
     provideClientHydration(),
+    provideAnimations(),
+    provideToastr(),
   ],
   bootstrap: [AppComponent]
 })

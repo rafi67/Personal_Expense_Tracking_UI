@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../../models/user.model';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { JwtTokenService } from '../../../services/jwt-token.service';
+import { ToastComponent } from '../toast/toast.component';
+
+
 
 @Component({
   selector: 'app-signup',
@@ -27,7 +30,7 @@ export class SignupComponent implements OnInit {
   };
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authServices: AuthenticationService,
-    private jwtTokenServices: JwtTokenService
+    private jwtTokenServices: JwtTokenService, private toast: ToastComponent
   ) {}
 
   ngOnInit(): void {
@@ -69,7 +72,9 @@ export class SignupComponent implements OnInit {
           formData.append("image", this.selectedFile);
           this.authServices.uploadImage(formData).subscribe(
             res => {
-              if(res.toString()=='200') alert(res1.message);
+              if(res.toString()=='200') {
+                this.toast.showSuccess('Done', 'Signup');
+              }
               this.signupForm.reset();
               this.signupForm.controls['gender'].setValue('option1');
               this.router.navigate(['/Navbar/DashBoard']);

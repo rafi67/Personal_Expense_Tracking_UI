@@ -4,6 +4,7 @@ import { ExpensesService } from '../../../services/expenses.service';
 import { ExpenseCategories, Expenses } from '../../../models/expense.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JwtTokenService } from '../../../services/jwt-token.service';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-add-expense',
@@ -44,7 +45,7 @@ export class AddExpenseComponent implements OnInit {
   categoryList: ExpenseCategories [] = [];
 
   constructor(private expenseServices: ExpensesService, private formBuilder: FormBuilder,
-    private jwtToken: JwtTokenService
+    private jwtToken: JwtTokenService, private toastr: ToastComponent
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +84,9 @@ export class AddExpenseComponent implements OnInit {
     this.expense.users.userID = '0';
     this.expense.expenseCategories.expenseCategoryID = '0';
     this.expenseServices.addExpense(this.expense).subscribe(
-      res => alert(res)
+      res => {
+        if(res.toString()=='200') this.toastr.showSuccess('Done', 'Add Expense');
+        }
     );
 
     this.expenseForm.reset();

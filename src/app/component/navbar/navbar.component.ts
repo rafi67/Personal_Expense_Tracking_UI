@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, Injectable, OnInit, inject } from '@angular/core';
 import { JwtTokenService } from '../../../services/jwt-token.service';
 import { Router } from '@angular/router';
 import { ChangeUserPasswordComponent } from '../change-user-password/change-user-password.component';
@@ -20,12 +20,6 @@ import { ChangeProfileComponent } from '../change-profile/change-profile.compone
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
-
-  @ViewChild(ChangeUserPasswordComponent) modal!: ChangeUserPasswordComponent;
-  @ViewChild(AddIncomeComponent) modal2!: AddIncomeComponent;
-  @ViewChild(AddExpenseComponent) modal3!: AddExpenseComponent;
-  @ViewChild(ChangePasswordComponent) modal4!: ChangePasswordComponent;
-  @ViewChild(ChangeProfileComponent) modal5!: ChangeProfileComponent;
 
   private modalService = inject(NgbModal);
   userRole: string = '';

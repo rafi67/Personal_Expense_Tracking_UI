@@ -4,6 +4,7 @@ import { IncomesService } from '../../../services/incomes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Categories, Incomes } from '../../../models/income.model';
 import { JwtTokenService } from '../../../services/jwt-token.service';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-add-income',
@@ -45,7 +46,7 @@ export class AddIncomeComponent implements OnInit {
   categoryList: Categories [] = [];
   
   constructor(private incomeServices: IncomesService, private formBuilder: FormBuilder,
-    private jwtToken: JwtTokenService
+    private jwtToken: JwtTokenService, private toastr: ToastComponent
   ) {}
 
   ngOnInit(): void {
@@ -86,7 +87,7 @@ export class AddIncomeComponent implements OnInit {
 
     this.incomeServices.addIncome(this.income).subscribe(
       res => {
-        alert(res);
+        if(res.toString()=='200') this.toastr.showSuccess('Done', 'Add Income');
         this.incomeForm.reset();
         this.incomeForm.controls['categoryID'].setValue('option1');
         this.closeModal();

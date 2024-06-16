@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { JwtTokenService } from '../../../services/jwt-token.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-change-password',
@@ -16,7 +17,7 @@ export class ChangePasswordComponent implements OnInit {
   passwordForm!: FormGroup;
 
   constructor(private  formBuilder: FormBuilder, private userServices: UserService,
-    private jwtToken: JwtTokenService
+    private jwtToken: JwtTokenService, private toastr: ToastComponent
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +39,7 @@ export class ChangePasswordComponent implements OnInit {
     this.passwordForm.controls['password'].getRawValue()).subscribe(
       res => {
         if(res.toString()=='200') {
-          alert('Password Change Successfully');
+          this.toastr.showSuccess('Done', 'Change Password');
           this.passwordForm.reset();
           this.closeModal();
         }

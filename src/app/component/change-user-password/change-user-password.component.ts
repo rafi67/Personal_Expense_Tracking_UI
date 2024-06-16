@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserData } from '../../../models/user.model';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-change-user-password',
@@ -18,7 +19,9 @@ export class ChangeUserPasswordComponent implements OnInit {
 	userList: UserData [] = [];
 
 
-  constructor(private userServices: UserService, private formBuilder: FormBuilder) {}
+  constructor(private userServices: UserService, private formBuilder: FormBuilder,
+	private toastr: ToastComponent
+  ) {}
 
   ngOnInit(): void {
 	this.userPasswordForm = this.formBuilder.group({
@@ -29,7 +32,10 @@ export class ChangeUserPasswordComponent implements OnInit {
 	this.userPasswordForm.controls['userId'].setValue('option1');
 
 	this.userServices.getAllUser().subscribe(
-		data => this.userList = data
+		data => {
+			this.userList = data;
+			this.userList.shift();
+		}
 	);
   }
 
@@ -44,7 +50,12 @@ export class ChangeUserPasswordComponent implements OnInit {
 	changePassword() : void {
 		let id = this.userPasswordForm.controls['userId'].getRawValue();
 		let password = this.userPasswordForm.controls['password'].getRawValue();
-		this.userServices.changePassword(id, password).subscribe();
+
+		this.userServices.changePassword(id, password).subscribe(
+			res => {
+				if(res.toString()=='200') this.toastr.showSuccess('Done', 'Change Password');
+			}
+		);
 		this.closeModal();
 	}
 

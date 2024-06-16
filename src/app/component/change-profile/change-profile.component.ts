@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../../services/user.service';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-change-profile',
@@ -15,7 +16,8 @@ export class ChangeProfileComponent implements OnInit {
   profileForm!: FormGroup;
   file!: File;
 
-  constructor(private formBuilder: FormBuilder, private userServices: UserService
+  constructor(private formBuilder: FormBuilder, private userServices: UserService,
+    private toastr: ToastComponent
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class ChangeProfileComponent implements OnInit {
     this.userServices.updateUserImage(formData)
     .subscribe(
       res => {
-        if(res.toString()=='200') alert('Successfully changed');
+        if(res.toString()=='200') this.toastr.showSuccess('Done', 'Change Profile Picture');
         else alert('failed to change');
         this.profileForm.controls['profilePicture'].reset();
         this.closeModal();

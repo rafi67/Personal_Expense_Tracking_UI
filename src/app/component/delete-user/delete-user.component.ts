@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserData } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-delete-user',
@@ -16,7 +17,9 @@ export class DeleteUserComponent implements OnInit {
   deleteUserForm!: FormGroup;
   userList: UserData [] = [];
 
-  constructor(private userServices: UserService, private formBuilder: FormBuilder) {}
+  constructor(private userServices: UserService, private formBuilder: FormBuilder,
+    private toastr: ToastComponent
+  ) {}
 
   ngOnInit(): void {
     
@@ -49,7 +52,7 @@ export class DeleteUserComponent implements OnInit {
     var id = this.deleteUserForm.controls['userId'].getRawValue();
     this.userServices.deleteUser(id).subscribe(
       res => {
-        if(res.toString()==='200') alert('Deleted Successfully');
+        if(res.toString()==='200') this.toastr.showSuccess('Delete User', 'Done');
         else alert('failed to delete');
       }
     );
